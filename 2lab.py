@@ -151,7 +151,7 @@ def visualize(quadtree, target_point=None, neighbors=None):
     y = [p.y for p in all_points]
     ids = [p.id for p in all_points]
 
-    plt.scatter(x, y, c='blue', label='Преподаватели')
+    plt.scatter(x, y, c='blue', label='Точки')
 
     if target_point:
         plt.scatter(target_point.x, target_point.y, c='red', label=f'Выбранный ID: {target_point.id}')
@@ -163,7 +163,7 @@ def visualize(quadtree, target_point=None, neighbors=None):
     plt.legend()
     plt.xlabel('X')
     plt.ylabel('Y')
-    plt.title('Распределение преподавателей и их ближайшие соседи на сессии')
+    plt.title('Распределение точек и ближайшие соседи точки')
     plt.grid(True)
     plt.show()
 
@@ -189,13 +189,13 @@ def main():
 
     while True:
         try:
-            user_input = input("Введите ID преподавателя (или 'exit' для выхода): ")
+            user_input = input("Введите ID точки (или 'exit' для выхода): ")
             if user_input.lower() == 'exit':
                 break
             target_id = int(user_input)
             target_point = quadtree.find_point_by_id(target_id)
             if not target_point:
-                print(f"Преподаватель с ID {target_id} не найден.")
+                print(f"Точка с ID {target_id} не найден.")
                 continue
             neighbors = find_nearest_neighbors(quadtree, target_point, k=5)
             print(f"Ближайшие соседи для ID {target_id}:")
